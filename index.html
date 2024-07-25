@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREAKYengine Lite Editor</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+    <div id="theme-switcher">
+        <button id="switch-theme">Switch Theme</button>
+    </div>
+<nav id="top-navbar">
+    <div class="dropdown">
+        <button class="dropbtn">File</button>
+        <div class="dropdown-content">
+            <a href="#" id="new-project">New Project</a>
+            <a href="#" id="import-project">Import Project</a>
+            <a href="#" id="export-project">Export Project</a>
+            <a href="#" id="compile-project">Compile Project</a>
+        </div>
+    </div>
+    <!-- Other existing navbar items -->
+</nav>
+    <div id="editor">
+        <!-- Left Panel: Object List -->
+        <div id="left-panel" class="panel">
+            <button id="create-object">Create Object</button>
+            <ul id="objects"></ul>
+            <div id="drop-zone">Drag & Drop</div>
+        </div>
+
+  <div id="center-panel">
+        <div id="game-controls">
+            <button id="play">
+                <svg width="15" height="15" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M8 5v14l11-7z"></path>
+                </svg>
+            </button>
+            <button id="pause">
+                <svg width="15" height="15" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+                </svg>
+            </button>
+            <button id="stop">
+                <svg width="15" height="15" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M6 6h12v12H6z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="game-container">
+            <canvas id="game-canvas"></canvas>
+        </div>
+        <button id="fullscreen-btn" title="Toggle Fullscreen">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"></path>
+        </svg>
+    </button>
+    </div>
+
+            <!-- Right Panel: Properties List -->
+    <div id="right-panel" class="panel">
+        <div id="properties">
+            <h3>Properties</h3>
+            <label for="object-name">Name:</label>
+            <input type="text" id="object-name"><br>
+            <div id="text-properties">
+            <label for="text-content">Text content:</label>
+            <input type="text" id="text-content"><br>
+            <label for="font-size">Font size:</label>
+            <input type="text" id="font-size"><br>
+            </div>
+            <label for="position-x">Position X:</label>
+            <input type="number" id="position-x" value="0"><br>
+            <label for="position-y">Position Y:</label>
+            <input type="number" id="position-y" value="0"><br>
+            <label for="rotation">Rotation:</label>
+            <input type="number" id="rotation" value="0"><br>
+            <label for="size">Size:</label>
+            <input type="number" id="size" value="100"><br>
+            <label for="color">Color:</label>
+            <input type="color" id="color" value="#f5be76">
+            <div id="scripts-section" class="drop-zone">
+    <h4>Scripts</h4>
+    <ul id="object-scripts"></ul>
+    <div id="custom-properties"></div>
+</div>
+            <button id="delete-object" style="width: -webkit-fill-available; background-color: #fe5555;">Delete Object</button>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- File Explorer -->
+    <div id="file-explorer">
+        <div id="file-list"></div>
+        <div id="file-upload">
+            <label for="file-input" class="file-input-label">Upload File</label>
+            <input type="file" id="file-input" accept="image/*" multiple>
+        </div>
+    </div>
+
+    <!-- Context Menu for Shape Creation -->
+    <div id="context-menu" class="context-menu">
+        <ul>
+            <li id="create-text">Text</li>
+            <li id="create-square">Square</li>
+            <li id="create-circle">Circle</li>
+            <li id="create-triangle">Triangle</li>
+            <li id="create-image">Upload Image</li>
+        </ul>
+    </div>
+
+    <input type="file" id="image-upload" accept="image/*" style="display: none;">
+    <script src="script.js"></script>
+</body>
+</html>
