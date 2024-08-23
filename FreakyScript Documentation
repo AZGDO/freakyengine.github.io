@@ -1,0 +1,104 @@
+FREAKYengine Script Documentation
+This document outlines the custom classes and functions available for use in FREAKYengine scripts. These scripts can be attached to game objects to define their behavior and interactions within the game.
+Global Objects
+object
+Represents the current game object to which the script is attached.
+Properties:
+
+name (string): The name of the object.
+x (number): The x-coordinate of the object.
+y (number): The y-coordinate of the object.
+rotation (number): The rotation of the object in degrees.
+size (number): The size of the object as a percentage (100 is normal size).
+type (string): The type of the object (e.g., 'square', 'circle', 'triangle', 'image', 'text').
+color (string): The color of the object (for shapes and text).
+layer (number): The rendering layer of the object.
+
+For text objects:
+
+textContent (string): The text content.
+fontSize (number): The font size.
+
+For image objects:
+
+width (number): The width of the image.
+height (number): The height of the image.
+
+gameScene
+Provides access to game-wide functions.
+Methods:
+
+pause(): Pauses the game.
+stop(): Stops the game and resets object positions.
+
+Functions
+playSound(fileName: string): void
+Plays a sound file that has been uploaded to the project.
+Parameters:
+
+fileName: The name of the sound file to play.
+
+findObjectNamed(name: string): object | undefined
+Finds and returns a game object by its name.
+Parameters:
+
+name: The name of the object to find.
+
+Returns:
+
+The found object, or undefined if no object with the given name exists.
+
+addProperty(propertyName: string, propertyConfig: object): void
+Adds a custom property to the current object.
+Parameters:
+
+propertyName: The name of the custom property.
+propertyConfig: An object describing the property (e.g., { type: 'number', value: 0, min: 0, max: 100 }).
+
+getProperty(propertyName: string): any
+Gets the value of a custom property.
+Parameters:
+
+propertyName: The name of the custom property.
+
+Returns:
+
+The value of the custom property, or undefined if it doesn't exist.
+
+setProperty(propertyName: string, value: any): void
+Sets the value of a custom property.
+Parameters:
+
+propertyName: The name of the custom property.
+value: The new value to set.
+
+Usage Example
+javascriptCopy// Move the object horizontally
+object.x += 2;
+
+// Rotate the object
+object.rotation += 1;
+
+// Play a sound when the object reaches a certain position
+if (object.x > 400) {
+    playSound("victory.mp3");
+}
+
+// Find another object and interact with it
+let player = findObjectNamed("player");
+if (player && Math.abs(player.x - object.x) < 50) {
+    // Player is close, do something
+}
+
+// Add and use a custom property
+addProperty("health", { type: 'number', value: 100, min: 0, max: 100 });
+let currentHealth = getProperty("health");
+if (currentHealth < 50) {
+    setProperty("health", currentHealth + 10);
+}
+
+// Pause the game when a condition is met
+if (getProperty("health") <= 0) {
+    gameScene.pause();
+}
+This documentation provides an overview of the available functions and properties in FREAKYengine scripts. Users can refer to this guide when creating scripts for their game objects, allowing them to create dynamic behaviors and interactions within their games.
